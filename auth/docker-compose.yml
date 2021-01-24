@@ -1,0 +1,37 @@
+version: '2'
+services:
+  service:
+    container_name: ${SERVICE_NAME}
+    image: ${SERVICE_NAME}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - ${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - spring
+    restart: always
+    environment:
+      PORT: ${PORT}
+      SERVICE_NAME: ${SERVICE_NAME}
+      PROFILE: ${PROFILE}
+      EUREKA_URI: ${EUREKA_URI}
+      MONGODB_LOGS: ${MONGODB_LOGS}
+      ENCRYPTION_AAD: ${ENCRYPTION_AAD}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      SECRET_KEY: ${SECRET_KEY}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      API_PREFIX: ${API_PREFIX}
+      API_VERSION: ${API_VERSION}
+      MONGODB_URI: ${MONGODB_URI}
+      MONGODB_DATABASE: ${MONGODB_DATABASE}
+      MONGODB_AUTHENTICATION_DATABASE: ${MONGODB_AUTHENTICATION_DATABASE}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+networks:
+  spring:
+    external: true

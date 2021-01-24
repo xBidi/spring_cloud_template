@@ -1,0 +1,25 @@
+version: '2'
+services:
+  service:
+    container_name: ${SERVICE_NAME}
+    image: ${SERVICE_NAME}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - ${PORT}
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - spring
+    restart: always
+    environment:
+      PORT: ${PORT}
+      SERVICE_NAME: ${SERVICE_NAME}
+      PROFILE: ${PROFILE}
+      GIT_URI: ${GIT_URI}
+      GIT_USERNAME: ${GIT_USERNAME}
+      GIT_PASSWORD: ${GIT_PASSWORD}
+networks:
+  spring:
+    external: true
